@@ -5,6 +5,7 @@ var cors = require('cors')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 var port = process.env.PORT || 8080;        // set our port
 
@@ -12,7 +13,7 @@ var port = process.env.PORT || 8080;        // set our port
 var router = express.Router();
 
 
-router.get('/client/:id', cors(), function (req, res) {
+router.get('/client/:id', function (req, res) {
    // res.json({ message: 'hooray! welcome to our api!' });
    let id = req.params.id;
    let data = [];
@@ -92,10 +93,10 @@ router.get('/client/:id', cors(), function (req, res) {
       ]
    }
 
-   res.json({ data });
+   res.json(data);
 });
 
-router.get('/', cors(), function (req, res) {
+router.get('/', function (req, res) {
    res.json({ message: 'hooray! welcome to our api!' });
 });
 
